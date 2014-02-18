@@ -2,7 +2,6 @@ class Planet
 
   def initialize size, orbit, hue, deg_vel, degs, sketch_w, sketch_h
     @size = size
-    @actual_size = @size
     @degs = degs
     @orbit = orbit
     @hue = hue
@@ -13,8 +12,6 @@ class Planet
 
   def display
     @degs += @deg_vel
-    @actual_size = (@actual_size + 1) % (@size + 1)
-
 
     push_matrix
 
@@ -23,7 +20,7 @@ class Planet
     theta = Math::PI * @degs / 180.0
     x = x_from_polar(@orbit, theta)
     y = y_from_polar(@orbit, theta)
-    ellipse x, y, @actual_size, @actual_size
+    ellipse x, y, @size, @size
 
     pop_matrix
   end
